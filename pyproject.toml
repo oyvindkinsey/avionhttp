@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "avionmqtt"
-version = "2.0.6"
-description = "Bridge Avion Bluetooth mesh lights to MQTT/Home Assistant"
+name = "avionhttp"
+version = "2.0.7"
+description = "A python library for integrating with Avi-on's backend"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "LGPL-3.0-or-later"}
@@ -36,9 +36,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "avionmesh>=2.0.6",
     "aiohttp>=3.7",
-    "aiomqtt>=2.0.0",
     "aiorun>=2022.11.1",
 ]
 
@@ -62,13 +60,12 @@ test = [
 ]
 
 [project.scripts]
-avionmqtt = "avionmqtt.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/oyvindkinsey/avionmqtt"
-Repository = "https://github.com/oyvindkinsey/avionmqtt"
-Issues = "https://github.com/oyvindkinsey/avionmqtt/issues"
-Documentation = "https://github.com/oyvindkinsey/avionmqtt/blob/main/README.md"
+Homepage = "https://github.com/oyvindkinsey/avionhttp"
+Repository = "https://github.com/oyvindkinsey/avionhttp"
+Issues = "https://github.com/oyvindkinsey/avionhttp/issues"
+Documentation = "https://github.com/oyvindkinsey/avionhttp/blob/main/README.md"
 
 # ============================================================================
 # Tool configurations
@@ -79,7 +76,7 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["avionmqtt*"]
+include = ["avionhttp*"]
 exclude = ["tests*"]
 
 # ============================================================================
@@ -135,7 +132,7 @@ addopts = [
     "--strict-config",        # Treat config errors as errors
     "--showlocals",          # Show local variables in tracebacks
     "--tb=short",            # Shorter traceback format
-    "--cov=avionmqtt",       # Coverage for main package
+    "--cov=avionhttp",       # Coverage for main package
     "--cov-report=term-missing",  # Show missing lines in terminal
     "--cov-report=html",     # Generate HTML coverage report
     "--cov-report=xml",      # Generate XML coverage for CI
@@ -152,7 +149,7 @@ markers = [
 
 # Coverage settings
 [tool.coverage.run]
-source = ["src/avionmqtt"]
+source = ["src/avionhttp"]
 omit = [
     "*/tests/*",
     "*/__pycache__/*",
