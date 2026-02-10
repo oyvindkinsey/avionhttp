@@ -1,5 +1,4 @@
 import asyncio
-from typing import List, Optional
 
 import aiohttp
 
@@ -8,15 +7,15 @@ HTTP_HOST = "https://api.avi-on.com"
 
 def util_format_mac_address(mac_address: str) -> str:
     iterator = iter(mac_address.lower())
-    pairs = zip(iterator, iterator)
+    pairs = zip(iterator, iterator, strict=False)
     return ":".join(a + b for a, b in pairs)
 
 
 async def http_make_request(
     host: str,
     path: str,
-    body: Optional[dict] = None,
-    auth_token: Optional[str] = None,
+    body: dict | None = None,
+    auth_token: str | None = None,
 ):
     method = "GET" if body is None else "POST"
     url = host + path
@@ -31,7 +30,7 @@ async def http_make_request(
             return await response.json()
 
 
-async def http_load_devices(host: str, auth_token: str, location_id: int) -> List[dict]:
+async def http_load_devices(host: str, auth_token: str, location_id: int) -> list[dict]:
     response = await http_make_request(
         host, f"locations/{location_id}/abstract_devices", auth_token=auth_token
     )
@@ -65,7 +64,7 @@ async def http_get_devices_in_group(host: str, auth_token: str, group_id: int):
     return raw_response["devices"]
 
 
-async def http_load_groups(host: str, auth_token: str, location_id: int) -> List[dict]:
+async def http_load_groups(host: str, auth_token: str, location_id: int) -> list[dict]:
     response = await http_make_request(
         host, f"locations/{location_id}/groups", auth_token=auth_token
     )
@@ -97,7 +96,7 @@ async def http_load_location(host: str, auth_token: str, location_id: int) -> di
     }
 
 
-async def http_load_locations(host: str, auth_token: str) -> List[dict]:
+async def http_load_locations(host: str, auth_token: str) -> list[dict]:
     response = await http_make_request(host, "user/locations", auth_token=auth_token)
     locations = []
     for raw_location in response["locations"]:
@@ -111,7 +110,7 @@ async def http_list_devices(
     email: str,
     password: str,
     host: str = HTTP_HOST,
-) -> List[dict]:
+) -> list[dict]:
     if not host.endswith("/"):
         host += "/"
 
