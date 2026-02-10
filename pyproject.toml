@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "avionhttp"
-version = "2.0.8"
+version = "2.0.9"
 description = "A python library for integrating with Avi-on's backend"
 readme = "README.md"
 requires-python = ">=3.11"
