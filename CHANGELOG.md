@@ -81,3 +81,8 @@ Added several small improvements, leaving the package in a reasonable usable sta
 ## 2.0.7 2025-11-22
 
 Forked from the original avionmqtt repository
+
+## 2.0.8 2026-02-10
+
+- Migrate to ruff linter
+- Remove TestPyPI from publish workflow
